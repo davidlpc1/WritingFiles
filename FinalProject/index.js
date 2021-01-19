@@ -1,15 +1,23 @@
 const filesystem = require('fs');
-const filePath = 'FinalProject/js.md'; // Alterar dependendo do local no CMD
-let contentOfFile = `### That works in JS with filesystem package!!!!`;
 
 function writeFile(filePath,fileContent){
-    filesystem.writeFileSync(filePath, fileContent)
+    try{
+        filesystem.writeFileSync(filePath, fileContent)
+    }catch(err){
+        console.log(`> WriteFile: error=${err}`)
+    }
 }
 
 function readFile(filePath){
-    return filesystem.readFileSync(filePath, 'utf-8');
+    try{
+        return filesystem.readFileSync(filePath, 'utf-8');
+    }catch(err){
+        console.log(`> ReadFile: error=${err}`)
+    }
 }
 
+const filePath = 'js.md'; // Alterar dependendo do local no CMD
+let contentOfFile = `### That works in JS with filesystem package!!!!`;
 writeFile(filePath, contentOfFile)
 const contentOfReadedFile = readFile(filePath); 
 
